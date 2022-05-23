@@ -1,4 +1,4 @@
-# Geocoding-API-Places-API
+# Geocoding & Places APIs
 
 ###First Steps
 1. Sign up for Google Cloud
