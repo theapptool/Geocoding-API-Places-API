@@ -1,0 +1,51 @@
+import requests
+from urllib.parse improt urlencode
+
+data_type = 'json'
+endpoind = "https://maps.googleapis.com/maps/api/geocode/ {data_type}"
+params = "{"address": "1600 Amphitheatre parkway, Mountain View, CA", "key": API_KEY}
+url_params = urlencode(params)
+
+url = f"{endpoint}?{url_params}"
+print(url)
+
+sample = 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY'
+print(url_params)
+
+
+def extract_last_lng(address_or_postalcode, data_type = 'json')":
+	endpoint = f"https://maps.googleapis.com/maps/api/geocode/ {data_type}"
+	params = {"address": "1600 Amphitheatre parkway, Mountain View, CA", "key": API_KEY}
+	url_params = urlencode(params)
+	r = requests.get(url)
+	#url = f"{endpoint}?{url_params}"
+
+	if r.status_code in range(200, 299):
+		return{}
+	latlng{}
+	try:
+		latlng = r.json()r.json()['results'][0]['geometry']['location']
+	except:
+		pass
+	return latlng.get("lat"),latlng.get("lng")
+	#extract_lat_lng(Ampitheatre Parkway, Mountain View, CA)['geometry']
+	#Results (37.422309600000001, -122.0846244)
+
+from urllib.parse import urlparse, parse_qsl
+to_parse = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=YOUR_API_KEY"
+
+urlparse(to_parse)
+	#results ParseResult(scheme='https', netloc='maps.googleapis.com', path='/maps/api/geocode/json', params='', query='address=1600+Amphitheatre+Parkway%2C+Mountain+View%2C+CA&key=AIzaSyD8PCLxbKHRBrJWg6JYp-YXYz0ph4LKiQw', fragment='')
+
+	query_string = urlparse(to_parse).query
+	query_string
+	#Results 'address=1600+Amphitheatre+Parkway%2C+Mountain+View%2C+CA&key=AIzaSyD8PCLxbKHRBrJWg6JYp-YXYz0ph4LKiQw'
+
+	query_tuple = parse_qsl(query_string)
+	print(query_tuple)
+	#Results [('address', '1600 Amphitheatre Parkway, MOuntain View, CA'), ('key','AIzaSyD8PCLxbKHRBrJWg6JYp-YXYz0ph4LKiQw' )]
+
+
+	query_dict = dict(query_tuple)
+	query_dict
+	#Results {'address': '1600 Amphitheatre Parkway, MOuntain View, CA','key','AIzaSyD8PCLxbKHRBrJWg6JYp-YXYz0ph4LKiQw'}
